@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Enums\Role;
 use App\Interfaces\UserRepositoryInterface;
 use App\Models\User;
+use App\Traits\BaseRepositoryTrait;
 use Illuminate\Database\Eloquent\Collection;
 
 class UserRepository implements UserRepositoryInterface
@@ -15,7 +16,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function __construct(User $model)
     {
-        $this->$model = $model;
+        $this->model = $model;
     }
 
     public function create(array $data): ?User

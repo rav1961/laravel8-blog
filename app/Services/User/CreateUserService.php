@@ -2,11 +2,10 @@
 
 namespace App\Services\User;
 
+use App\Events\UserRegistered;
 use App\Exceptions\UserAlreadyExistsException;
 use App\Interfaces\UserRepositoryInterface;
-use App\Mail\RegisterUserMail;
 use App\Models\User;
-use Illuminate\Support\Facades\Mail;
 
 class CreateUserService
 {
@@ -30,7 +29,7 @@ class CreateUserService
 
         $newUser = $this->userRepository->create($data);
 
-        Mail::to($newUser->email)->send(new RegisterUserMail($newUser));
+        event(new UserRegistered($newUser));
 
         return $newUser;
     }

@@ -29,8 +29,11 @@ class RegisterUserMail extends Mailable implements ShouldQueue
      *
      * @return $this
      */
-    public function build()
+    public function build(): static
     {
-        return $this->view('emails.register');
+        /** @var view-string $view */
+        $view = 'emails.register';
+
+        return $this->view($view, ['name' => $this->user->first_name]);
     }
 }
