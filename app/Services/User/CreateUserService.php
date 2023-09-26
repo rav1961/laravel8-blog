@@ -18,7 +18,7 @@ class CreateUserService
     /**
      * @throws UserAlreadyExistsException
      */
-    public function store(array $data): User
+    public function store(array $data): ?User
     {
         if ($this->userRepository->isEmailExists($data['email'])) {
             throw new UserAlreadyExistsException();
