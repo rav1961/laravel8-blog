@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Collection;
 
 interface UserRepositoryInterface extends BaseRepositoryInterface
 {
+    public function create(array $data): ?User;
+
     public function getByFirstName(string $firstName): ?User;
 
     public function getByEmail(string $email): ?User;

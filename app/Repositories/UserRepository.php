@@ -18,6 +18,13 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         $this->user = $user;
     }
 
+    public function create(array $data): ?User
+    {
+        $newModel = $this->user->create($data);
+
+        return $newModel->fresh();
+    }
+
     public function getByFirstName(string $firstName): ?User
     {
         return $this->user->where('first_name', '=', $firstName)->first();

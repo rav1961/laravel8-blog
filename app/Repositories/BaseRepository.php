@@ -25,13 +25,6 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $this->model->findOrFail($id);
     }
 
-    public function create(array $data): ?Model
-    {
-        $newModel = $this->model->create($data);
-
-        return $newModel->fresh();
-    }
-
     public function update(int $id, array $data): bool
     {
         return (bool) $this->model->where('id', $id)->update($data);
