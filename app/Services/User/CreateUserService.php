@@ -4,7 +4,9 @@ namespace App\Services\User;
 
 use App\Exceptions\UserAlreadyExistsException;
 use App\Interfaces\UserRepositoryInterface;
+use App\Mail\RegisterUserMail;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class CreateUserService
 {
@@ -18,7 +20,7 @@ class CreateUserService
     /**
      * @throws UserAlreadyExistsException
      */
-    public function store(array $data): ?User
+    public function handle(array $data): ?User
     {
         if ($this->userRepository->isEmailExists($data['email'])) {
             throw new UserAlreadyExistsException();
@@ -26,6 +28,10 @@ class CreateUserService
 
         $data['password'] = bcrypt($data['password']);
 
-        return $this->userRepository->create($data);
+        $newUser = $this->userRepository->create($data);
+
+        Mail::to($newUser->email)->send(new RegisterUserMail($newUser));
+
+        return $newUser;
     }
 }

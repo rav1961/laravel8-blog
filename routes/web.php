@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/queue-test', function () {
+    \App\Jobs\ProcessPodcast::dispatch();
+
+    return 'Job has been dispatched';
+});
