@@ -12,7 +12,7 @@ parameters:
     ignoreErrors:
         - '#PHPDoc tag @var#'
         - '#^Parameter \#1 \$view of function view expects view-string\|null, string given\.$#'
-#
+
 #    excludePaths:
 #        - ./*/*/FileToBeExcluded.php
 #
