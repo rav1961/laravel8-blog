@@ -11,7 +11,8 @@
 
 @section('content')
     <main class="form-signin">
-        <form>
+        <form method="post" action="{{ route('login') }}">
+            @csrf
             <h1 class="h3 mb-3 fw-normal">Please Register</h1>
 
             <div class="form-floating">

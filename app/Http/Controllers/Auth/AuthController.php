@@ -3,22 +3,45 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class AuthController extends Controller
 {
-    public function login()
+    /**
+     * @return View
+     */
+    public function showLogin()
     {
-        /** @var view-string $viewName */
-        $viewName = 'folder.view';
-
-        return view($viewName);
+        return view('pages.auth.login');
     }
 
-    public function register()
+    public function login(LoginRequest $request)
     {
-        /** @var view-string $viewName */
-        $viewName = 'pages.auth.register';
+        $credentials = $request->only('email', 'password');
+        dd($request);
+        //        if (Auth::attempt($credentials)) {
+        //            return redirect()->intended('panel.view');
+        //        }
 
-        return view($viewName);
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('/');
+    }
+
+    public function showRegister()
+    {
+        return view('pages.auth.register');
+    }
+
+    public function register(RegisterRequest $request)
+    {
+        //        $newUser = $this->userService->handle($request);
     }
 }

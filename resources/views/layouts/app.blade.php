@@ -24,7 +24,10 @@
 
             <div class="col-md-3 text-end">
                 @auth
-                    <a href="{{ url('logout') }}" class="btn btn-outline-primary">Log out</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-primary">Logout</button>
+                    </form>
                 @else
                     <a href="{{ route('login') }}" class="btn btn-outline-primary me-2">Log in</a>
                     <a href="{{ route('register') }}" class="btn btn-primary">Register</a>
