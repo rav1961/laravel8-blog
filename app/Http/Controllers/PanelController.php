@@ -6,6 +6,9 @@ class PanelController extends Controller
 {
     public function index()
     {
-        return view('pages.panel.index');
+        /** @var view-string $viewName */
+        $viewName = 'pages.panel.index';
+
+        return view($viewName);
     }
 }

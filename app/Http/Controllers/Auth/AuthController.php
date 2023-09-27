@@ -8,11 +8,17 @@ class AuthController extends Controller
 {
     public function login()
     {
-        return view('pages.auth.login');
+        /** @var view-string $viewName */
+        $viewName = 'folder.view';
+
+        return view($viewName);
     }
 
     public function register()
     {
-        return view('pages.auth.register');
+        /** @var view-string $viewName */
+        $viewName = 'pages.auth.register';
+
+        return view($viewName);
     }
 }
