@@ -17,9 +17,7 @@ Route::middleware(['guest'])->group(function () {
     Route::post('register', AuthRegisterController::class)->name('register');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'checkUserRole'])->group(function () {
     Route::get('panel', fn () => view('panel.index'))->name('panel.index');
     Route::get('logout', AuthLogoutController::class)->name('logout');
 });
-
-//Route::get('/test', [App\Http\Controllers\EmailTestController::class, 'send']);

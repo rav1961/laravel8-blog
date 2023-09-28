@@ -14,20 +14,24 @@
         @if(session('success'))
             <div class="alert alert-success p-3">{{ session('success') }}</div>
         @endif
+        @if(session('error'))
+            <div class="alert alert-danger p-3">{{ session('error') }}</div>
+        @endif
+
         <form method="post" action="{{ route('login') }}">
             @csrf
 
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
             <div class="form-floating mb-4">
-                <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" value="r.rojek87@gmail.com">
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" value="editor@test.pl">
                 <label for="email">Email address</label>
                 @error('email')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
             <div class="form-floating mb-4">
-                <input type="password" class="form-control" id="password" placeholder="Password" name="password" value="admin">
+                <input type="password" class="form-control" id="password" placeholder="Password" name="password" value="123123123">
                 <label for="password">Password</label>
             </div>
 
