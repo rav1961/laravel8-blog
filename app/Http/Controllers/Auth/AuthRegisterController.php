@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Exceptions\UserAlreadyExistsException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Services\User\CreateUserService;
-use Illuminate\Support\Facades\Redirect;
 
 class AuthRegisterController extends Controller
 {
@@ -16,13 +16,17 @@ class AuthRegisterController extends Controller
         $this->createUserService = $createUserService;
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws UserAlreadyExistsException
+     */
     public function __invoke(RegisterRequest $request)
     {
         $data = $request->validated();
 
-        $newUser = $this->createUserService->handle($data);
+        $this->createUserService->handle($data);
 
-        return Redirect::route('login.view')
-            ->with('success', 'Rejestracja przebiegła pomyślnie, zalogouj się');
+        return \redirect()->route('login.view')->with('success', 'User registered successfully!');
     }
 }

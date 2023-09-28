@@ -11,6 +11,9 @@
     </style>
 
     <main class="form-signin">
+        @if(session('success'))
+            <div class="alert alert-success p-3">{{ session('success') }}</div>
+        @endif
         <form method="post" action="{{ route('login') }}">
             @csrf
 
