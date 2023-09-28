@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginRequest;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Services\Auth\AuthLoginService;
 
 class AuthLoginController extends Controller
@@ -20,7 +20,7 @@ class AuthLoginController extends Controller
         $loginStatus = $this->authLoginService->handle($request->validated());
 
         if ($loginStatus) {
-            return redirect()->intended('panel');
+            return redirect()->intended('posts');
         }
 
         return back()->withErrors([

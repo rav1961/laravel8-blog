@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Exceptions\UserAlreadyExistsException;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\User\RegisterRequest;
 use App\Services\User\CreateUserService;
 
 class AuthRegisterController extends Controller

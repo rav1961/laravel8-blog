@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <style>
+        .hidden { display: none !important; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -19,9 +22,9 @@
 
             @auth()
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="{{ route('posts.list') }}" class="nav-link px-2 link-secondary">Posts</a></li>
+                    <li><a href="{{ route('posts.index') }}" class="nav-link px-2 link-secondary">Posts</a></li>
                     @role('admin')
-                        <li><a href="{{ route('users.list') }}" class="nav-link px-2 link-dark">Users</a></li>
+                        <li><a href="{{ route('users.index') }}" class="nav-link px-2 link-dark">Users</a></li>
                     @endrole
                 </ul>
             @endauth

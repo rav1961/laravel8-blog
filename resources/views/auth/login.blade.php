@@ -24,14 +24,14 @@
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
             <div class="form-floating mb-4">
-                <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" value="editor@test.pl">
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
                 <label for="email">Email address</label>
                 @error('email')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
             <div class="form-floating mb-4">
-                <input type="password" class="form-control" id="password" placeholder="Password" name="password" value="123123123">
+                <input type="password" class="form-control" id="password" placeholder="Password" name="password">
                 <label for="password">Password</label>
             </div>
 

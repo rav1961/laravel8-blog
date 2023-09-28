@@ -3,8 +3,8 @@
 use App\Http\Controllers\Auth\AuthLoginController;
 use App\Http\Controllers\Auth\AuthLogoutController;
 use App\Http\Controllers\Auth\AuthRegisterController;
-use App\Http\Controllers\Post\PostsListController;
-use App\Http\Controllers\User\UsersListController;
+use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,11 +20,13 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth', 'checkUserRole'])->group(function () {
-    Route::get('panel', fn () => view('panel.index'))->name('panel.index');
     Route::get('logout', AuthLogoutController::class)->name('logout');
 
-    Route::get('posts', PostsListController::class)->name('posts.list');
-    Route::get('users', UsersListController::class)
-        ->middleware(['blockEditor'])
-        ->name('users.list');
+    Route::resource('posts', PostController::class);
+    Route::resource('users', UserController::class);
+
+    //    Route::get('posts', PostsListController::class)->name('posts.list');
+    //    Route::get('users', UsersListController::class)
+    //        ->middleware(['blockEditor'])
+    //        ->name('users.list');
 });
