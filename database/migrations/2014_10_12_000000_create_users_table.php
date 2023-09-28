@@ -18,8 +18,9 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('first_name', 15);
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('email_verified_at')->nullable()->default(now());
             $table->string('password');
+            $table->rememberToken();
             $table->enum('role', Role::getValues())->default(Role::USER->value);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();

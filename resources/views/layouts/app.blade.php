@@ -17,21 +17,22 @@
                 </svg>
             </a>
 
-{{--            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">--}}
-{{--                <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>--}}
-{{--                <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>--}}
-{{--            </ul>--}}
+            @auth()
+                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2 link-secondary">Posts</a></li>
+                    @if(\App\Enums\Role::ADMIN)
+                        <li><a href="#" class="nav-link px-2 link-dark">Users</a></li>
+                    @endif
+                </ul>
+            @endauth
 
             <div class="col-md-3 text-end">
-                @auth
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-outline-primary">Logout</button>
-                    </form>
+                @guest
+                    <a href="{{ route('login.view') }}" class="btn btn-outline-primary me-2">Log in</a>
+                    <a href="{{ route('register.view') }}" class="btn btn-primary">Register</a>
                 @else
-                    <a href="{{ route('login') }}" class="btn btn-outline-primary me-2">Log in</a>
-                    <a href="{{ route('register') }}" class="btn btn-primary">Register</a>
-                @endauth
+                    <a href="{{ route('logout') }}" class="btn btn-outline-primary me-2">Logout</a>
+                @endguest
             </div>
         </header>
         <main>

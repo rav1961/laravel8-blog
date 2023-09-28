@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Interfaces\UserRepositoryInterface;
 use App\Repositories\UserRepository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Blade::if('role', function ($role) {
+            return Auth::check() && Auth::user()->role === $role;
+        });
+
         Model::preventLazyLoading(! $this->app->isProduction());
     }
 }
