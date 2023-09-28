@@ -22,4 +22,20 @@ class PostService
     {
         return $this->postRepository->delete($postId);
     }
+
+    public function create(array $data)
+    {
+        if ($data['image_url'] !== null) {
+            exit('upload file');
+        }
+
+        $newPost = $this->postRepository->create($data);
+
+        return $newPost;
+    }
+
+    public function show(int $postId)
+    {
+        return $this->postRepository->getById($postId);
+    }
 }

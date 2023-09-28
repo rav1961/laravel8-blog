@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\PostCreateRequest;
 use App\Services\Post\PostService;
 use Illuminate\Http\Request;
 
@@ -24,16 +25,15 @@ class PostController extends Controller
         return view('panel.posts.index', compact('posts'));
     }
 
-    //    /**
-    //     * Show the form for creating a new resource.
-    //     *
-    //     * @return \Illuminate\Http\Response
-    //     */
-    //    public function create()
-    //    {
-    //        //
-    //    }
-    //
+    public function create(PostCreateRequest $request)
+    {
+        $data = $request->validated();
+
+        $this->postService->create($data);
+
+        return redirect()->route('posts.index')->with('success', 'New post created');
+    }
+
     //    /**
     //     * Store a newly created resource in storage.
     //     *
@@ -44,16 +44,13 @@ class PostController extends Controller
     //        //
     //    }
     //
-    //    /**
-    //     * Display the specified resource.
-    //     *
-    //     * @param  int  $id
-    //     * @return \Illuminate\Http\Response
-    //     */
-    //    public function show($id)
-    //    {
-    //        //
-    //    }
+
+    public function show(int $id)
+    {
+        $post = $this->postService->show($id);
+
+        return view('panel.posts.show', compact('post'));
+    }
     //
     //    /**
     //     * Show the form for editing the specified resource.

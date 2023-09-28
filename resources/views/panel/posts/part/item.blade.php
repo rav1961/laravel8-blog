@@ -11,8 +11,9 @@
     <td>{{ $post->user->first_name }}</td>
     <td>{{ $post->created_at }}</td>
     <td>{{ $post->updated_at }}</td>
-    <td>
+    <td style="text-align: right">
         <a href="{{ route('posts.show', ['post' => $post->id]) }}" class="btn bg-info">show</a>
+        <a href="{{ route('posts.edit', ['post' => $post->id]) }}" class="btn bg-warning">edit</a>
         <form action="{{ route('posts.destroy', ['post' => $post->id]) }}" method="POST" class="d-inline">
             @csrf
             @method('DELETE')
