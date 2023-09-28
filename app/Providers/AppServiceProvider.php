@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Blade::if('role', function ($role) {
-            return Auth::check() && Auth::user()->role === $role;
+            return Auth::check() && Auth::user()->role->value === $role;
         });
 
         Model::preventLazyLoading(! $this->app->isProduction());

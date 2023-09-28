@@ -17,6 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title')->nullable(false);
             $table->text('content')->nullable();
+            $table->text('image_url')->nullable();
             $table->foreignId('user_id')->nullable(false);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();

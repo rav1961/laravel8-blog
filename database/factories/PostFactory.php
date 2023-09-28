@@ -16,6 +16,7 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->text(100),
             'content' => $this->faker->text(),
+            'image_url' => null,
         ];
     }
 }

@@ -19,10 +19,10 @@
 
             @auth()
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 link-secondary">Posts</a></li>
-                    @if(\App\Enums\Role::ADMIN)
-                        <li><a href="#" class="nav-link px-2 link-dark">Users</a></li>
-                    @endif
+                    <li><a href="{{ route('posts.list') }}" class="nav-link px-2 link-secondary">Posts</a></li>
+                    @role('admin')
+                        <li><a href="{{ route('users.list') }}" class="nav-link px-2 link-dark">Users</a></li>
+                    @endrole
                 </ul>
             @endauth
 
